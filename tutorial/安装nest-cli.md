@@ -4,6 +4,7 @@
 npm install -g @nestjs/cli   // 安装nest-cli
 nest new nestjs // 新建nest项目
 cd nestjs
+nest --version // 查看版本
 npm run start
 ```
 打开浏览器，输入 http://localhost:3000 
