@@ -1,9 +1,23 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 import { AppModule } from './app.module';
 
+
+declare const module: any;
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  // app.setGlobalPrefix('v1'); 给路由设置前缀 比如之前/users可以访问，现在需要/v1/users
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+
   await app.listen(3000);
+
+  if (module.hot) {
+      module.hot.accept();
+      module.hot.dispose(() => app.close());
+   }
 }
 bootstrap();

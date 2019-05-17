@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 
+/**
+ * [Module description]
+ * @param {[AppService],}} {  imports [description]
+ */
 @Module({
-  imports: [UsersModule],
+  imports: [
+  	TypeOrmModule.forRoot(),
+  	UserModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

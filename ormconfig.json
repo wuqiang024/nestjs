@@ -1,0 +1,10 @@
+{
+	"type": "mysql",
+	"host": "localhost",
+	"port": 3306,
+	"username": "root",
+	"password": "810805",
+	"database": "nestjs",
+	"entities": ["src/**/*.dto{.ts, .js}"],
+	"synchronize": true
+}
